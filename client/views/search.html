@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>搜索慈善活动</title>
+    <link rel="stylesheet" href="../public/css/style.css">
+</head>
+<body>
+    <div id="app">
+        <header id="navbar"></header>
+
+        <section class="page-header">
+            <div class="container">
+                <h1>搜索慈善活动</h1>
+                <p>根据您的需求查找适合的慈善活动</p>
+            </div>
+        </section>
+
+        <section class="search-section">
+            <div class="container">
+                <form id="search-form" class="search-form">
+                    <div class="form-group">
+                        <label for="date">活动日期</label>
+                        <input type="date" id="date" name="date">
+                    </div>
+                    <div class="form-group">
+                        <label for="location">活动地点</label>
+                        <input type="text" id="location" name="location" placeholder="输入地点">
+                    </div>
+                    <div class="form-group">
+                        <label for="category">活动类别</label>
+                        <select id="category" name="category">
+                            <option value="">所有类别</option>
+                        </select>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn">搜索活动</button>
+                        <button type="reset" class="btn btn-secondary">清除筛选</button>
+                    </div>
+                </form>
+
+                <div id="search-results" class="search-results">
+                    <h3>搜索结果</h3>
+                    <div id="results-container" class="events-grid">
+                        <!-- 搜索结果将通过 JavaScript 动态加载 -->
+                        <p class="empty-results">暂无匹配的活动</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <div class="container">
+                <p>&copy; 2025 慈善活动平台. 保留所有权利.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="../public/js/nav.js"></script>
+    <script src="../public/js/categories.js"></script>
+    <script src="../public/js/search.js"></script>
+</body>
+</html>

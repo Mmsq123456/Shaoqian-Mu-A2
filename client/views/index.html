@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>慈善活动 - 首页</title>
+    <link rel="stylesheet" href="../public/css/style.css">
+</head>
+<body>
+    <div id="app">
+        <!-- 导航将通过 JavaScript 动态插入 -->
+        <header id="navbar"></header>
+
+        <section class="hero">
+            <div class="container">
+                <h1>支持慈善事业，改变世界</h1>
+                <p>探索我们即将举办的慈善活动，加入我们一起为公益事业贡献力量</p>
+                <a href="search.html" class="btn">查找活动</a>
+            </div>
+        </section>
+
+        <section class="about">
+            <div class="container">
+                <h2>关于我们的慈善组织</h2>
+                <p>我们致力于连接慈善组织与爱心人士，通过各种活动筹集资金，支持教育、环保、医疗等多个领域的公益事业。</p>
+                <p>我们的使命是：通过集体行动，创造一个更公平、更可持续的世界。</p>
+            </div>
+        </section>
+
+        <section class="upcoming-events">
+            <div class="container">
+                <h2>即将举办的慈善活动</h2>
+                <div id="events-container" class="events-grid">
+                    <!-- 活动将通过 JavaScript 动态加载 -->
+                    <p class="loading">加载活动中...</p>
+                </div>
+                <a href="search.html" class="btn">查看全部活动</a>
+            </div>
+        </section>
+
+        <footer>
+            <div class="container">
+                <p>&copy; 2025 慈善活动平台. 保留所有权利.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="../public/js/nav.js"></script>
+    <script src="../public/js/index.js"></script>
+</body>
+</html>

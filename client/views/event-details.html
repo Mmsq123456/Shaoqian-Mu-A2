@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>活动详情 - 慈善活动</title>
+    <link rel="stylesheet" href="../public/css/style.css">
+</head>
+<body>
+    <div id="app">
+        <header id="navbar"></header>
+
+        <section class="page-header">
+            <div class="container">
+                <h1 id="event-title">活动详情</h1>
+            </div>
+        </section>
+
+        <section class="event-details">
+            <div class="container">
+                <div id="event-loader" class="loading">加载活动详情中...</div>
+                <div id="event-container" class="event-detail">
+                    <!-- 活动详情将通过 JavaScript 动态加载 -->
+                </div>
+                <div id="event-error" class="error-message" style="display: none;">
+                    <p>加载活动详情失败，请稍后再试</p>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <div class="container">
+                <p>&copy; 2025 慈善活动平台. 保留所有权利.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="../public/js/nav.js"></script>
+    <script src="../public/js/event-details.js"></script>
+</body>
+</html>
