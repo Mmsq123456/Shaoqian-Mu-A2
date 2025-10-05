@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>搜索慈善活动</title>
     <link rel="stylesheet" href="../public/css/style.css">
+    <!-- 添加Font Awesome图标 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <div id="app">
@@ -26,12 +28,13 @@
                     </div>
                     <div class="form-group">
                         <label for="location">活动地点</label>
-                        <input type="text" id="location" name="location" placeholder="输入地点">
+                        <input type="text" id="location" name="location" placeholder="输入地点（如：Sydney、Melbourne）">
                     </div>
                     <div class="form-group">
                         <label for="category">活动类别</label>
                         <select id="category" name="category">
                             <option value="">所有类别</option>
+                            <!-- 类别将通过 JavaScript 动态加载 -->
                         </select>
                     </div>
                     <div class="form-actions">
@@ -44,7 +47,7 @@
                     <h3>搜索结果</h3>
                     <div id="results-container" class="events-grid">
                         <!-- 搜索结果将通过 JavaScript 动态加载 -->
-                        <p class="empty-results">暂无匹配的活动</p>
+                        <p class="empty-results">请使用上方筛选条件搜索活动</p>
                     </div>
                 </div>
             </div>
@@ -62,6 +65,7 @@
         </footer>
     </div>
 
+    <!-- 确保正确的引用顺序 -->
     <script src="../public/js/nav.js"></script>
     <script src="../public/js/categories.js"></script>
     <script src="../public/js/search.js"></script>

@@ -1,3 +1,4 @@
+// controllers/categories.js
 const { query } = require('../event_db');
 
 // 获取所有活动类别

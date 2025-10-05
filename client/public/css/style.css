@@ -410,3 +410,59 @@ footer .container {
         margin-top: 20px;
     }
 }
+
+/* 添加到 style.css 中 */
+.event-meta {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+    font-size: 14px;
+}
+
+.ticket-price {
+    color: #e74c3c;
+    font-weight: bold;
+}
+
+.goal-amount {
+    color: #7f8c8d;
+}
+
+.search-form .form-group {
+    margin-bottom: 25px;
+}
+
+.search-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+.search-form input,
+.search-form select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+.search-form input:focus,
+.search-form select:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
+}
+
+.form-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.btn {
+    flex: 1;
+    text-align: center;
+}

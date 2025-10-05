@@ -1,7 +1,8 @@
+// controllers/events.js
 const { query } = require('../event_db');
 
 // 获取即将举办的活动（首页）
-async function getUpcomingEvents(req, res) {
+async function getupcomingEvents(req, res) {
     try {
         const today = new Date().toISOString().split('T')[0];
         const [results] = await query(
@@ -47,12 +48,14 @@ async function getEventById(req, res) {
 // 搜索活动
 async function searchEvents(req, res) {
     try {
+        console.log('搜索请求参数:', req.query); // 添加日志
+        
         const { date, location, category } = req.query;
         let queryStr = `SELECT e.*, c.category_name, o.org_name 
                         FROM events e
                         JOIN event_categories c ON e.category_id = c.id
                         JOIN charity_organizations o ON e.org_id = o.id
-                        WHERE e.status = 'upcoming'`;
+                        WHERE 1=1`; // 使用 1=1 简化条件拼接
         const params = [];
         
         if (date) {
@@ -70,18 +73,26 @@ async function searchEvents(req, res) {
             params.push(category);
         }
         
+        // 只显示即将举办的活动
+        queryStr += ` AND e.status = 'upcoming'`;
+        
         queryStr += ` ORDER BY e.event_date`;
         
+        console.log('执行的SQL:', queryStr); // 调试日志
+        console.log('参数:', params); // 调试日志
+        
         const [results] = await query(queryStr, params);
+        console.log('搜索结果数量:', results.length); // 调试日志
+        
         res.json(results);
     } catch (error) {
-        console.error('Error searching events:', error);
-        res.status(500).json({ error: 'Server error' });
+        console.error('搜索活动错误:', error);
+        res.status(500).json({ error: '服务器错误: ' + error.message });
     }
 }
 
 module.exports = {
-    getUpcomingEvents,
+    getupcomingEvents,
     getEventById,
     searchEvents
 };
