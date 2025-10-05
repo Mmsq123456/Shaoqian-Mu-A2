@@ -50,17 +50,12 @@ CREATE TABLE `events` (
 
 LOCK TABLES `events` WRITE;
 /*!40000 ALTER TABLE `events` DISABLE KEYS */;
-INSERT INTO `events` VALUES (1,'Annual Charity Gala','2025-10-15','19:00:00','Grand Ballroom, Sydney','An elegant evening of dining, dancing, and fundraising for children in need',150.00,50000.00,35000.00,'upcoming',1,1,'https://example.com/gala.jpg'),(2,'5K Charity Fun Run','2025-10-20','08:30:00','Centennial Park, Melbourne','A fun-filled run for all ages to support environmental initiatives',30.00,10000.00,7500.00,'upcoming',2,2,'https://example.com/funrun.jpg'),(3,'Art for a Cause Auction','2025-10-08','14:00:00','Art Gallery, Brisbane','Silent auction featuring works from local artists to support healthcare programs',0.00,20000.00,12000.00,'upcoming',3,3,'https://example.com/auction.jpg'),(4,'Music for Hope Concert','2025-11-02','18:30:00','Concert Hall, Perth','Live music event with top artists to benefit children\'s charities',80.00,30000.00,18000.00,'upcoming',4,1,'https://example.com/concert.jpg'),(5,'Eco Workshop Series','2025-10-10','10:00:00','Community Center, Adelaide','Educational workshops on sustainable living for environmental conservation',0.00,5000.00,3000.00,'upcoming',5,2,'https://example.com/workshop.jpg'),(6,'Charity Golf Tournament','2025-09-25','09:00:00','Golf Club, Sydney','Annual golf event to raise funds for healthcare access',120.00,25000.00,25000.00,'past',1,3,'https://example.com/golf.jpg'),(7,'Winter Warmth Drive','2025-09-15','13:00:00','City Hall, Melbourne','Collection drive for winter clothing for the homeless',0.00,8000.00,8500.00,'past',5,1,'https://example.com/winter.jpg'),(8,'Food Festival for Charity','2025-10-01','11:00:00','Food Court, Brisbane','Tasting event featuring local cuisines to support hunger relief',25.00,15000.00,10000.00,'upcoming',1,2,'https://example.com/foodfest.jpg');
-/*!40000 ALTER TABLE `events` ENABLE KEYS */;
-UNLOCK TABLES;
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
-
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-
--- Dump completed on 2025-10-05 21:02:30
+INSERT INTO events VALUES 
+(1,'Annual Charity Gala','2025-10-15','19:00:00','Grand Ballroom, Sydney','An elegant evening of dining, dancing, and fundraising for children in need',150.00,50000.00,35000.00,'upcoming',1,1,'https://images.unsplash.com/photo-1532634922-8fe0b757fb13?w=800&h=400&fit=crop'),
+(2,'5K Charity Fun Run','2025-10-20','08:30:00','Centennial Park, Melbourne','A fun-filled run for all ages to support environmental initiatives',30.00,10000.00,7500.00,'upcoming',2,2,'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=400&fit=crop'),
+(3,'Art for a Cause Auction','2025-10-08','14:00:00','Art Gallery, Brisbane','Silent auction featuring works from local artists to support healthcare programs',0.00,20000.00,12000.00,'upcoming',3,3,'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=800&h=400&fit=crop'),
+(4,'Music for Hope Concert','2025-11-02','18:30:00','Concert Hall, Perth','Live music event with top artists to benefit children\'s charities',80.00,30000.00,18000.00,'upcoming',4,1,'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=800&h=400&fit=crop'),
+(5,'Eco Workshop Series','2025-10-10','10:00:00','Community Center, Adelaide','Educational workshops on sustainable living for environmental conservation',0.00,5000.00,3000.00,'upcoming',5,2,'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=800&h=400&fit=crop'),
+(6,'Charity Golf Tournament','2025-09-25','09:00:00','Golf Club, Sydney','Annual golf event to raise funds for healthcare access',120.00,25000.00,25000.00,'past',1,3,'https://images.unsplash.com/photo-1535131749006-b7f9c2a4d2e6?w=800&h=400&fit=crop'),
+(7,'Winter Warmth Drive','2025-09-15','13:00:00','City Hall, Melbourne','Collection drive for winter clothing for the homeless',0.00,8000.00,8500.00,'past',5,1,'https://images.unsplash.com/photo-1575311378737-9e7f5eda239a?w=800&h=400&fit=crop'),
+(8,'Food Festival for Charity','2025-10-01','11:00:00','Food Court, Brisbane','Tasting event featuring local cuisines to support hunger relief',25.00,15000.00,10000.00,'upcoming',1,2,'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&h=400&fit=crop');

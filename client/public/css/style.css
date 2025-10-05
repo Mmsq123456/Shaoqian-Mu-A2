@@ -466,3 +466,112 @@ footer .container {
     flex: 1;
     text-align: center;
 }
+
+/* 活动详情页增强样式 */
+.event-main {
+    grid-column: 1;
+}
+
+.event-sidebar {
+    grid-column: 2;
+}
+
+.event-highlights,
+.event-schedule,
+.event-notes {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.event-highlights h3,
+.event-schedule h3,
+.event-notes h3 {
+    color: #2c3e50;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #e0e0e0;
+}
+
+.event-highlights ul,
+.event-schedule ul,
+.event-notes ul {
+    list-style: none;
+    padding: 0;
+}
+
+.event-highlights li,
+.event-schedule li,
+.event-notes li {
+    padding: 8px 0;
+    padding-left: 25px;
+    position: relative;
+}
+
+.event-highlights li:before {
+    content: "★";
+    color: #f39c12;
+    position: absolute;
+    left: 0;
+}
+
+.event-schedule li:before {
+    content: "⏱";
+    position: absolute;
+    left: 0;
+}
+
+.event-notes li:before {
+    content: "⚠";
+    position: absolute;
+    left: 0;
+}
+
+.org-logo {
+    max-width: 100px;
+    margin-bottom: 15px;
+}
+
+.event-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+    justify-content: center;
+}
+
+.btn-outline {
+    background-color: transparent;
+    border: 2px solid #3498db;
+    color: #3498db;
+}
+
+.btn-outline:hover {
+    background-color: #3498db;
+    color: white;
+}
+
+.favorited {
+    color: #e74c3c;
+    border-color: #e74c3c;
+}
+
+.favorited:hover {
+    background-color: #e74c3c;
+    color: white;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .event-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .event-sidebar {
+        grid-column: 1;
+    }
+    
+    .event-actions {
+        flex-direction: column;
+    }
+}
