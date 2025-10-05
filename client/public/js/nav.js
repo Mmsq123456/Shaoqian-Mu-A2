@@ -1,3 +1,4 @@
+// 移除 export 语句，改为直接使用
 function renderNavigation() {
     const navContainer = document.createElement('nav');
     navContainer.className = 'navbar';
@@ -15,5 +16,4 @@ function renderNavigation() {
     return navContainer;
 }
 
-// 导出函数
-export { renderNavigation };
+// 不再使用 export

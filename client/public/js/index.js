@@ -1,6 +1,4 @@
-import { renderNavigation } from './nav.js';
-
-// 渲染导航栏
+// 移除 import 语句
 document.addEventListener('DOMContentLoaded', async function() {
     const navbar = document.getElementById('navbar');
     navbar.appendChild(renderNavigation());
