@@ -14,14 +14,21 @@ async function getupcomingEvents(req, res) {
              ORDER BY e.event_date`,
             [today]
         );
-        res.json(results);
+        
+        // 处理图片URL
+        const processedResults = results.map(event => ({
+            ...event,
+            image_url: event.image_url || getDefaultEventImage(event.category_id)
+        }));
+        
+        res.json(processedResults);
     } catch (error) {
         console.error('Error fetching upcoming events:', error);
         res.status(500).json({ error: 'Server error' });
     }
 }
 
-// 根据ID获取活动详情 - 增强版
+// 根据ID获取活动详情
 async function getEventById(req, res) {
     try {
         const eventId = req.params.id;
@@ -38,17 +45,18 @@ async function getEventById(req, res) {
             return res.status(404).json({ error: 'Event not found' });
         }
         
+        // 处理图片URL
+        const event = {
+            ...results[0],
+            image_url: results[0].image_url || getDefaultEventImage(results[0].category_id)
+        };
+        
         // 为每个活动添加详细内容
-        const event = results[0];
         const enhancedEvent = {
             ...event,
-            // 添加详细的活动描述
             detailed_description: getEventDetailedDescription(event.id, event.event_name),
-            // 添加活动亮点
             highlights: getEventHighlights(event.id),
-            // 添加活动日程
             schedule: getEventSchedule(event.id),
-            // 添加注意事项
             notes: getEventNotes(event.id)
         };
         
@@ -58,6 +66,77 @@ async function getEventById(req, res) {
         res.status(500).json({ error: 'Server error' });
     }
 }
+
+// 搜索活动
+async function searchEvents(req, res) {
+    try {
+        console.log('搜索请求参数:', req.query);
+        
+        const { date, location, category } = req.query;
+        let queryStr = `SELECT e.*, c.category_name, o.org_name 
+                        FROM events e
+                        JOIN event_categories c ON e.category_id = c.id
+                        JOIN charity_organizations o ON e.org_id = o.id
+                        WHERE 1=1`;
+        const params = [];
+        
+        if (date) {
+            queryStr += ` AND e.event_date = ?`;
+            params.push(date);
+        }
+        
+        if (location) {
+            queryStr += ` AND e.location LIKE ?`;
+            params.push(`%${location}%`);
+        }
+        
+        if (category) {
+            queryStr += ` AND c.category_name = ?`;
+            params.push(category);
+        }
+        
+        queryStr += ` AND e.status = 'upcoming' ORDER BY e.event_date`;
+        
+        console.log('执行的SQL:', queryStr);
+        console.log('参数:', params);
+        
+        const [results] = await query(queryStr, params);
+        console.log('搜索结果数量:', results.length);
+        
+        // 处理图片URL
+        const processedResults = results.map(event => ({
+            ...event,
+            image_url: event.image_url || getDefaultEventImage(event.category_id)
+        }));
+        
+        res.json(processedResults);
+    } catch (error) {
+        console.error('搜索活动错误:', error);
+        res.status(500).json({ error: '服务器错误: ' + error.message });
+    }
+}
+
+// 获取默认活动图片
+function getDefaultEventImage(categoryId) {
+    const defaultImages = {
+        1: 'https://images.unsplash.com/photo-1532634922-8fe0b757fb13?w=800&h=400&fit=crop', // Gala Dinner
+        2: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=400&fit=crop', // Fun Run
+        3: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=800&h=400&fit=crop', // Silent Auction
+        4: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=800&h=400&fit=crop', // Concert
+        5: 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=800&h=400&fit=crop'  // Workshop
+    };
+    
+    return defaultImages[categoryId] || 'https://images.unsplash.com/photo-1542736667-069246bdbc6d?w=800&h=400&fit=crop';
+}
+
+
+
+module.exports = {
+    getupcomingEvents,
+    getEventById,
+    searchEvents
+};
+
 
 // 获取活动详细描述
 function getEventDetailedDescription(eventId, eventName) {
@@ -231,54 +310,3 @@ function getEventNotes(eventId) {
     return notes[eventId] || ["请按时参加", "如有特殊需求请提前联系主办方"];
 }
 
-// 搜索活动
-async function searchEvents(req, res) {
-    try {
-        console.log('搜索请求参数:', req.query); // 添加日志
-        
-        const { date, location, category } = req.query;
-        let queryStr = `SELECT e.*, c.category_name, o.org_name 
-                        FROM events e
-                        JOIN event_categories c ON e.category_id = c.id
-                        JOIN charity_organizations o ON e.org_id = o.id
-                        WHERE 1=1`; // 使用 1=1 简化条件拼接
-        const params = [];
-        
-        if (date) {
-            queryStr += ` AND e.event_date = ?`;
-            params.push(date);
-        }
-        
-        if (location) {
-            queryStr += ` AND e.location LIKE ?`;
-            params.push(`%${location}%`);
-        }
-        
-        if (category) {
-            queryStr += ` AND c.category_name = ?`;
-            params.push(category);
-        }
-        
-        // 只显示即将举办的活动
-        queryStr += ` AND e.status = 'upcoming'`;
-        
-        queryStr += ` ORDER BY e.event_date`;
-        
-        console.log('执行的SQL:', queryStr); // 调试日志
-        console.log('参数:', params); // 调试日志
-        
-        const [results] = await query(queryStr, params);
-        console.log('搜索结果数量:', results.length); // 调试日志
-        
-        res.json(results);
-    } catch (error) {
-        console.error('搜索活动错误:', error);
-        res.status(500).json({ error: '服务器错误: ' + error.message });
-    }
-}
-
-module.exports = {
-    getupcomingEvents,
-    getEventById,
-    searchEvents
-};

@@ -1,7 +1,9 @@
 // 移除 import 语句
 document.addEventListener('DOMContentLoaded', async function() {
     const navbar = document.getElementById('navbar');
-    navbar.appendChild(renderNavigation());
+    if (navbar) {
+        navbar.appendChild(renderNavigation());
+    }
     
     // 加载即将举办的活动
     await loadUpcomingEvents();
@@ -29,14 +31,15 @@ async function loadUpcomingEvents() {
             eventCard.className = 'event-card';
             eventCard.innerHTML = `
                 <div class="event-image">
-                    <img src="${event.image_url || 'https://via.placeholder.com/300x200?text=Event+Image'}" alt="${event.event_name}">
+                    <img src="${event.image_url}" alt="${event.event_name}" 
+                         onerror="this.src='https://images.unsplash.com/photo-1542736667-069246bdbc6d?w=300&h=200&fit=crop'">
                 </div>
                 <div class="event-info">
                     <h3>${event.event_name}</h3>
                     <p><i class="far fa-calendar"></i> ${formatDate(event.event_date)}</p>
                     <p><i class="far fa-map-marker-alt"></i> ${event.location}</p>
                     <p><i class="far fa-tag"></i> ${event.category_name}</p>
-                    <p class="event-desc">${event.description.substring(0, 100)}...</p>
+                    <p class="event-desc">${event.description ? event.description.substring(0, 100) + '...' : '暂无描述'}</p>
                     <a href="event-details.html?id=${event.id}" class="btn">查看详情</a>
                 </div>
             `;

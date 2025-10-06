@@ -2,13 +2,28 @@ const mysql = require('mysql2/promise');
 
 const dbConfig = {
     host: 'localhost',
-    user: 'root', // 替换为你的 MySQL 用户名
-    password: '1137326387', // 替换为你的 MySQL 密码
+    user: 'root',
+    password: '1137326387',
     database: 'charityevents_db'
 };
 
 // 创建数据库连接池
-const pool = mysql.createPool(dbConfig);
+const pool = mysql.createPool({
+    ...dbConfig,
+    waitForConnections: true,
+    connectionLimit: 10,
+    queueLimit: 0
+});
+
+// 测试连接
+pool.getConnection()
+    .then(connection => {
+        console.log('数据库连接成功');
+        connection.release();
+    })
+    .catch(err => {
+        console.error('数据库连接失败:', err);
+    });
 
 // 导出连接池
 module.exports = {

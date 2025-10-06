@@ -71,12 +71,16 @@ function renderEventDetails(event) {
     const progress = event.raised_amount / event.goal_amount * 100;
     const progressBarWidth = `${Math.min(100, progress)}%`;
     
+    // 处理图片URL - 修复图片显示问题
+    const eventImage = event.image_url || getDefaultEventImage(event.category_id);
+    const orgLogo = event.logo_url || '';
+    
     eventContainer.innerHTML = `
         <div class="event-header">
-            <img src="${event.image_url || 'https://via.placeholder.com/800x400?text=Event+Image'}" 
+            <img src="${eventImage}" 
                  alt="${event.event_name}" 
                  class="event-banner"
-                 onerror="this.src='https://via.placeholder.com/800x400?text=Event+Image'">
+                 onerror="this.src='https://images.unsplash.com/photo-1542736667-069246bdbc6d?w=800&h=400&fit=crop'">
             <div class="event-meta">
                 <h2>${event.event_name}</h2>
                 <p><i class="fas fa-calendar"></i> ${formatDate(event.event_date)} ${event.event_time || ''}</p>
@@ -133,7 +137,7 @@ function renderEventDetails(event) {
                 <div class="event-ticket">
                     <h3><i class="fas fa-ticket-alt"></i> 票务信息</h3>
                     <p class="ticket-price">${event.ticket_price > 0 ? `票价: ¥${event.ticket_price}` : '免费参加'}</p>
-                    <button id="register-btn" class="btn btn-primary">
+                    <button id="register-btn" class="btn">
                         <i class="fas fa-user-plus"></i> 立即注册
                     </button>
                     <button id="donate-btn" class="btn btn-secondary">
@@ -143,7 +147,7 @@ function renderEventDetails(event) {
                 
                 <div class="event-organization">
                     <h3><i class="fas fa-hands-helping"></i> 关于主办方</h3>
-                    ${event.logo_url ? `<img src="${event.logo_url}" alt="${event.org_name}" class="org-logo">` : ''}
+                    ${orgLogo ? `<img src="${orgLogo}" alt="${event.org_name}" class="org-logo" onerror="this.style.display='none'">` : ''}
                     <p class="org-mission">${event.mission_statement || '该组织暂无使命宣言'}</p>
                     <p class="org-contact"><i class="fas fa-envelope"></i> ${event.contact_info}</p>
                 </div>
@@ -164,48 +168,77 @@ function renderEventDetails(event) {
     bindEventButtons(event);
 }
 
+// 获取默认活动图片
+function getDefaultEventImage(categoryId) {
+    const defaultImages = {
+        1: 'https://images.unsplash.com/photo-1532634922-8fe0b757fb13?w=800&h=400&fit=crop', // Gala Dinner
+        2: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800&h=400&fit=crop', // Fun Run
+        3: 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=800&h=400&fit=crop', // Silent Auction
+        4: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=800&h=400&fit=crop', // Concert
+        5: 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=800&h=400&fit=crop'  // Workshop
+    };
+    
+    return defaultImages[categoryId] || 'https://images.unsplash.com/photo-1542736667-069246bdbc6d?w=800&h=400&fit=crop';
+}
+
 // 绑定活动按钮事件
 function bindEventButtons(event) {
     // 注册按钮
-    document.getElementById('register-btn').addEventListener('click', function() {
-        alert(`感谢您注册参加 "${event.event_name}"！\n我们已收到您的注册信息，活动详情将通过邮件发送给您。`);
-    });
+    const registerBtn = document.getElementById('register-btn');
+    if (registerBtn) {
+        registerBtn.addEventListener('click', function() {
+            alert(`感谢您注册参加 "${event.event_name}"！\n我们已收到您的注册信息，活动详情将通过邮件发送给您。`);
+        });
+    }
     
     // 捐款按钮
-    document.getElementById('donate-btn').addEventListener('click', function() {
-        const amount = prompt(`感谢您为 "${event.event_name}" 捐款！\n请输入捐款金额（元）:`);
-        if (amount && !isNaN(amount) && amount > 0) {
-            alert(`感谢您捐款 ¥${amount}！\n您的支持将帮助 ${event.org_name} 继续他们的重要工作。`);
-        }
-    });
+    const donateBtn = document.getElementById('donate-btn');
+    if (donateBtn) {
+        donateBtn.addEventListener('click', function() {
+            const amount = prompt(`感谢您为 "${event.event_name}" 捐款！\n请输入捐款金额（元）:`);
+            if (amount && !isNaN(amount) && amount > 0) {
+                alert(`感谢您捐款 ¥${amount}！\n您的支持将帮助 ${event.org_name} 继续他们的重要工作。`);
+            }
+        });
+    }
     
     // 分享按钮
-    document.getElementById('share-btn').addEventListener('click', function() {
-        if (navigator.share) {
-            navigator.share({
-                title: event.event_name,
-                text: event.description,
-                url: window.location.href
-            });
-        } else {
-            alert('活动链接已复制到剪贴板！\n' + window.location.href);
-        }
-    });
+    const shareBtn = document.getElementById('share-btn');
+    if (shareBtn) {
+        shareBtn.addEventListener('click', function() {
+            if (navigator.share) {
+                navigator.share({
+                    title: event.event_name,
+                    text: event.description,
+                    url: window.location.href
+                });
+            } else {
+                // 复制到剪贴板
+                navigator.clipboard.writeText(window.location.href).then(function() {
+                    alert('活动链接已复制到剪贴板！\n' + window.location.href);
+                }, function() {
+                    alert('活动链接：' + window.location.href);
+                });
+            }
+        });
+    }
     
     // 收藏按钮
     const favoriteBtn = document.getElementById('favorite-btn');
-    favoriteBtn.addEventListener('click', function() {
-        const isFavorited = favoriteBtn.classList.contains('favorited');
-        if (isFavorited) {
-            favoriteBtn.classList.remove('favorited');
-            favoriteBtn.innerHTML = '<i class="far fa-heart"></i> 收藏活动';
-            alert('已从收藏中移除');
-        } else {
-            favoriteBtn.classList.add('favorited');
-            favoriteBtn.innerHTML = '<i class="fas fa-heart"></i> 已收藏';
-            alert('活动已添加到收藏！');
-        }
-    });
+    if (favoriteBtn) {
+        favoriteBtn.addEventListener('click', function() {
+            const isFavorited = favoriteBtn.classList.contains('favorited');
+            if (isFavorited) {
+                favoriteBtn.classList.remove('favorited');
+                favoriteBtn.innerHTML = '<i class="far fa-heart"></i> 收藏活动';
+                alert('已从收藏中移除');
+            } else {
+                favoriteBtn.classList.add('favorited');
+                favoriteBtn.innerHTML = '<i class="fas fa-heart"></i> 已收藏';
+                alert('活动已添加到收藏！');
+            }
+        });
+    }
 }
 
 // 日期格式化函数

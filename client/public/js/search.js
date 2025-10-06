@@ -66,7 +66,7 @@ async function handleSearch(e) {
     const location = document.getElementById('location').value.trim();
     const category = document.getElementById('category').value;
     
-    console.log('搜索条件:', { date, location, category }); // 调试信息
+    console.log('搜索条件:', { date, location, category });
     
     try {
         // 构建查询参数
@@ -129,7 +129,7 @@ async function handleSearch(e) {
 function resetSearch() {
     const resultsContainer = document.getElementById('results-container');
     if (resultsContainer) {
-        resultsContainer.innerHTML = '<p class="empty-results">暂无匹配的活动</p>';
+        resultsContainer.innerHTML = '<p class="empty-results">请使用上方筛选条件搜索活动</p>';
     }
 }
 
@@ -153,9 +153,8 @@ function displaySearchResults(events) {
         eventCard.className = 'event-card';
         eventCard.innerHTML = `
             <div class="event-image">
-                <img src="${event.image_url || 'https://via.placeholder.com/300x200?text=Event+Image'}" 
-                     alt="${event.event_name}" 
-                     onerror="this.src='https://via.placeholder.com/300x200?text=Event+Image'">
+                <img src="${event.image_url}" alt="${event.event_name}"
+                     onerror="this.src='https://images.unsplash.com/photo-1542736667-069246bdbc6d?w=300&h=200&fit=crop'">
             </div>
             <div class="event-info">
                 <h3>${event.event_name}</h3>

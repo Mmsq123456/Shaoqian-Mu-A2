@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>联系我们 - 慈善活动平台</title>
+    <link rel="stylesheet" href="../public/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div id="app">
+        <header id="navbar"></header>
+
+        <section class="page-header">
+            <div class="container">
+                <h1>联系我们</h1>
+                <p>我们很乐意听取您的意见和建议</p>
+            </div>
+        </section>
+
+        <section class="contact-content">
+            <div class="container">
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <h2>联系信息</h2>
+                        
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <h3>地址</h3>
+                                <p>北京市朝阳区慈善路123号</p>
+                                <p>慈善大厦15层</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <h3>电话</h3>
+                                <p>+86 10 1234 5678</p>
+                                <p>工作时间: 9:00-18:00</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <h3>邮箱</h3>
+                                <p>contact@charityevents.org</p>
+                                <p>info@charityevents.org</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <h3>工作时间</h3>
+                                <p>周一至周五: 9:00 - 18:00</p>
+                                <p>周末: 10:00 - 16:00</p>
+                            </div>
+                        </div>
+
+                        <div class="social-contact">
+                            <h3>关注我们</h3>
+                            <div class="social-links">
+                                <a href="#" class="social-link">
+                                    <i class="fab fa-weixin"></i>
+                                    <span>微信</span>
+                                </a>
+                                <a href="#" class="social-link">
+                                    <i class="fab fa-weibo"></i>
+                                    <span>微博</span>
+                                </a>
+                                <a href="#" class="social-link">
+                                    <i class="fab fa-qq"></i>
+                                    <span>QQ</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-form">
+                        <h2>发送消息</h2>
+                        <form id="contact-form">
+                            <div class="form-group">
+                                <label for="name">姓名 *</label>
+                                <input type="text" id="name" name="name" required placeholder="请输入您的姓名">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email">邮箱 *</label>
+                                <input type="email" id="email" name="email" required placeholder="请输入您的邮箱">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="phone">电话</label>
+                                <input type="tel" id="phone" name="phone" placeholder="请输入您的电话">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="subject">主题 *</label>
+                                <select id="subject" name="subject" required>
+                                    <option value="">请选择主题</option>
+                                    <option value="activity">活动咨询</option>
+                                    <option value="cooperation">合作洽谈</option>
+                                    <option value="volunteer">志愿者申请</option>
+                                    <option value="donation">捐款咨询</option>
+                                    <option value="suggestion">意见建议</option>
+                                    <option value="other">其他</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="message">消息内容 *</label>
+                                <textarea id="message" name="message" rows="6" required placeholder="请输入您想说的话..."></textarea>
+                            </div>
+                            
+                            <div class="form-actions">
+                                <button type="submit" class="btn">
+                                    <i class="fas fa-paper-plane"></i> 发送消息
+                                </button>
+                                <button type="reset" class="btn btn-secondary">
+                                    <i class="fas fa-redo"></i> 重置表单
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="faq-section">
+                    <h2>常见问题</h2>
+                    <div class="faq-grid">
+                        <div class="faq-item">
+                            <h3>如何参与慈善活动？</h3>
+                            <p>您可以通过我们的网站浏览即将举办的活动，选择感兴趣的活动进行在线注册报名。大部分活动都支持在线支付和报名。</p>
+                        </div>
+                        <div class="faq-item">
+                            <h3>捐款如何使用？</h3>
+                            <p>所有捐款都会用于指定的慈善项目，我们定期在官网公布资金使用情况，确保每一分钱都透明公开地用于公益事业。</p>
+                        </div>
+                        <div class="faq-item">
+                            <h3>如何成为志愿者？</h3>
+                            <p>我们长期招募志愿者，您可以通过联系表单提交申请，或关注网站上的志愿者招募信息。我们会根据您的特长安排合适的岗位。</p>
+                        </div>
+                        <div class="faq-item">
+                            <h3>企业如何合作？</h3>
+                            <p>我们欢迎企业与我们一起举办慈善活动，提供赞助或组织员工参与。请通过联系表单或直接电话与我们洽谈合作细节。</p>
+                        </div>
+                        <div class="faq-item">
+                            <h3>活动取消或改期怎么办？</h3>
+                            <p>如遇特殊情况需要取消或改期，我们会通过短信、邮件和官网公告通知所有已报名的参与者，并提供退款或改期选择。</p>
+                        </div>
+                        <div class="faq-item">
+                            <h3>如何获取捐款收据？</h3>
+                            <p>所有捐款都可以申请开具公益事业捐赠收据，请在捐款时备注需要收据，我们会在活动结束后统一寄送。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="map-section">
+                    <h2>我们的位置</h2>
+                    <div class="map-placeholder">
+                        <i class="fas fa-map-marked-alt"></i>
+                        <p>北京市朝阳区慈善路123号 慈善大厦</p>
+                        <p>地铁：1号线慈善路站A出口步行5分钟</p>
+                        <p>公交：123路、456路慈善大厦站</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <div class="container">
+                <p>&copy; 2025 慈善活动平台. 保留所有权利.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-weibo"></i></a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="../public/js/nav.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const contactForm = document.getElementById('contact-form');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // 简单的表单验证
+                    const name = document.getElementById('name').value;
+                    const email = document.getElementById('email').value;
+                    const subject = document.getElementById('subject').value;
+                    const message = document.getElementById('message').value;
+                    
+                    if (!name || !email || !subject || !message) {
+                        alert('请填写所有必填字段！');
+                        return;
+                    }
+                    
+                    // 模拟表单提交
+                    alert('感谢您的留言！我们会尽快回复您。\n\n姓名：' + name + '\n邮箱：' + email + '\n主题：' + subject);
+                    contactForm.reset();
+                });
+            }
+        });
+    </script>
+</body>
+</html>
